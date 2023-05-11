@@ -1,121 +1,127 @@
 #######################################
-# 2023.04.20.
+# 2023.04.27.
 # Dávid
-# Python Basic - 10th Lesson
+# Python Basic - 11th Lesson
 #######################################
 
 
 # 1. feladat
 print("\n---------1. feladat---------")
 
-myList = []
-for i in range(5):
-    myList.append(i)
-
-for j in myList:
-    print(j)
+for i in range(1, 11):
+    for j in range(i):
+        print(i, end=" ")
+    print("")
 
 # 2. feladat
 print("\n---------2. feladat---------")
 
-a = input("a: ")
-b = input("b: ")
-c = input("c: ")
+"""
+Keressük meg azokat a számokat 1500 és 2500 között, amelyek oszthatóak 7-el és 4-el is.
+A megkeresett elemeket írassuk ki.
+"""
+div_w_4 = []
+div_w_7 = []
 
-print(a, b, c)
-print(a, b, c, sep="-")
+for i in range(1501, 2500, 4):
+    if i % 7 == 0:
+        div_w_7.append(i)
+
+for i in range(1501, 2500):
+    if i % 7 == 0 and i % 4 == 0:
+        div_w_4.append(i)
+
+if div_w_4 == div_w_7:
+    print("Both lists have the same elements.")
+else:
+    print("There are different elements.")
+
 
 # 3. feladat
 print("\n---------3. feladat---------")
 
-# Átváltás / Konvertálás
-"""
-type = input("Konvertálási típus (kg) (c) (km):")
+vezeteknev = ["Kovács", "Kerekes", "Tóth", "Nagy"]
+keresztnev = ["Petúnia", "István", "Rajmond", "Evelin"]
 
-if type == "kg":
-    x = float(input("Érték megadása: "))
-    unit = input("Egység (kg) (g):")
-    if unit == "kg":
-        print(str(x) + " kg in g " + str(x * 1000))
-    elif unit == "g":
-        print(str(x) + " g in kg " + str(x / 1000))
-    else:
-        print("Not a real unit!")
-
-elif type == "c":
-    x = float(input("Érték megadása: "))
-    unit = input("Egység (C) (F):")
-    if unit == "C":
-        print(str(x) + " celsius in Fahrenheit " + str(x*1.8+32))
-    elif unit == "F":
-        print(str(x) + " Fahrenheit in celsius " + str((x-32) / 1.8 ))
-    else:
-        print("Not a real unit!")
-
-elif type == "km":
-    x = float(input("Érték megadása: "))
-    unit = input("Egység (km) (miles):")
-    if unit == "km":
-        print(str(x) + " km in miles " + str(x*0.621))
-    elif unit == "miles":
-        print(str(x) + " miles in km " + str(x/0.621))
-    else:
-        print("Not a real unit!")
-
-else:
-    print("Nincs ilyen konvertálási típus!")
-
-"""
+for i in vezeteknev:
+    for j in keresztnev:
+        print(i, j)
 
 # 4. feladat
 print("\n---------4. feladat---------")
 
-# Időszámítás
-"""
-time = input("Start time: ")
-duration = int(input("Duration (min):"))
-hour, minutes = time.split(":")
+names = ["Harry", "Hermione", "Ronald", "Dumbledore", "Neville"]
 
-time_minutes = int(hour) * 60 + int(minutes)
+for i in range(len(names)):
+    for j in range(len(names)):
+        if i < j:
+            print(names[i] , " and ", names[j])
 
-# Vég (percben) = Jelenlegi idő (percben) + időtartam
-end_minutes = time_minutes + duration
-end_hours = (end_minutes // 60) % 24
-end_min = end_minutes - (end_minutes // 60) * 60
-
-print("End time: " + str(end_hours) + ":" + str(end_min))
-"""
 
 # 5. feladat
 print("\n---------5. feladat---------")
 
-# Jelszó ellenőrző
 
-password = input("Jelszó:\n")
-spec_char = ["&", "@",  "!", "+", "-", "$"]
-if 6 <= len(password) <= 16:
-    print("The length is good. :)")
+my_number = int(input("Give me a number: "))
+prime_divisors = []
 
-lower = False
-upper = False
-digit = False
-spec_c = False
+for i in range(1, my_number+1):
+    if my_number % i == 0:
+        prime_divisors.append(i)
 
-for char in password:
-    if char.islower():
-        # print("There is a lower-case letter.")
-        lower = True
-    if char.isupper():
-        # print("There is a upper-case letter.")
-        upper = True
-    if char.isdigit():
-        # print("There is a digit in the password.")
-        digit = True
-    if char in spec_char:
-        # print("There is a spec character.")
-        spec_c = True
+if len(prime_divisors) > 2:
+    print(str(my_number) + " is not a prime number because it has " + str(len(prime_divisors))
+          + " divisors. These divisors are: " + str(prime_divisors))
+elif len(prime_divisors) == 1:
+    print("The number is 1.")
 
-if lower and upper and digit and spec_c:
-    print("This is a very strong password! :O")
 else:
-    print("This password is poor...")
+    print(str(my_number) + " is prime because it has " + str(len(prime_divisors))
+          + " divisors, one and itself.")
+
+
+
+
+# 6. feladat
+print("\n---------6. feladat---------")
+names = ["Aladár", "Baladár", "Jobbadár", "Szaladár"]
+goals = [6, 2, 5, 7]
+# hibázások
+faults = [3, 1, 7, 2]
+
+# Legtöbb gólt szerzett játékos
+top_score = max(goals)
+ts_index = goals.index(top_score)
+
+print("Top-scorer: ", names[ts_index])
+
+print("Version 2, Top-Scorer: ", names[goals.index(max(goals))])
+
+"""
+Az előbbi módszer alapján írassuk ki annak a nevét, aki a legkevesebbet hibázott.
+"""
+
+least_faults = min(faults)
+lf_index = faults.index(least_faults)
+
+print("Least-Faults: ", names[lf_index])
+
+print("Version 2, Least-faults: ", names[faults.index(min(faults))])
+
+
+
+
+average = []
+for i in range(len(goals)):
+    average.append( goals[i] - faults[i] )
+
+print("All averages", average)
+
+print("The best in average ", names[average.index(max(average))] ,
+      " with an average of ", average[average.index(max(average))])
+
+"""
+1) Bővítsük ki a listákat több adattal.
+2) Nézzük meg, hogy ugyanolyan hosszúak-e a listák.
+3) Keressük meg azokat a játékosokat, akik 5-től több gólt lőttek, de 2-nél kevesebbszer hibáztak.
+"""
